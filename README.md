@@ -77,3 +77,7 @@
 20. Seed Sample Users
     1. create user model
     2. seed sample users
+21. Complete Signin Screen
+    1. handle submit action
+    2. save token in store and local storage
+    3. show user name in header
