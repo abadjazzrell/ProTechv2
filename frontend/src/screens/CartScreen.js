@@ -15,7 +15,10 @@ export default function CartScreen() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     cart: { cartItems },
+    userInfo,
   } = state;
+
+  const isUserAdmin = userInfo && userInfo.isAdmin;
 
   const updateCartHandler = async (item, quantity) => {
     const { data } = await axios.get(`/api/products/${item._id}`);
@@ -114,7 +117,7 @@ export default function CartScreen() {
                       type='button'
                       variant='primary'
                       onClick={checkoutHandler}
-                      disabled={cartItems.length === 0}
+                      disabled={cartItems.length === 0 || isUserAdmin}
                     >
                       Proceed to Checkout
                     </Button>

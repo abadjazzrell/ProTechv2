@@ -113,3 +113,8 @@
     7. render paypal button
     8. implement onApprove payment function
     9. create pay order api in backend
+29. Create Profile Screen
+    1. get user info from context
+    2. show user information
+    3. create user update api
+    4. update user info

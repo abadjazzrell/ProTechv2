@@ -29,6 +29,7 @@ const data = {
       rating: 4.5,
       numReviews: 10,
       description: "High Quality Shirts",
+      isActive: true,
     },
     {
       //_id: "2",
@@ -42,6 +43,7 @@ const data = {
       rating: 4.5,
       numReviews: 10,
       description: "High Quality Shirts",
+      isActive: true,
     },
     {
       //_id: "3",
@@ -55,6 +57,7 @@ const data = {
       rating: 4.5,
       numReviews: 10,
       description: "High Quality Pants",
+      isActive: true,
     },
     {
       //_id: "4",
@@ -68,6 +71,7 @@ const data = {
       rating: 4.5,
       numReviews: 10,
       description: "High Quality Pants",
+      isActive: true,
     },
   ],
 };
