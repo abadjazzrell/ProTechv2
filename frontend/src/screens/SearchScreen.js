@@ -1,8 +1,8 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-hot-toast";
-import { getError } from "../utils";
+import { toast } from "react-toastify";
+import { getError } from "../util";
 import { Helmet } from "react-helmet-async";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -47,10 +47,6 @@ const prices = [
     name: "$201 to $1000",
     value: "201-1000",
   },
-  {
-    name: "$1001 to $5000",
-    value: "1001-5000",
-  },
 ];
 
 export const ratings = [
@@ -78,7 +74,9 @@ export const ratings = [
 export default function SearchScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const sp = new URLSearchParams(search); // /search?category=Shirts
+
+  const sp = new URLSearchParams(search);
+
   const category = sp.get("category") || "all";
   const query = sp.get("query") || "all";
   const price = sp.get("price") || "all";
@@ -95,14 +93,21 @@ export default function SearchScreen() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
-        );
+        const { data } = await axios.get("/api/products/search", {
+          params: {
+            query: query,
+            category: category,
+            price: price,
+            rating: rating,
+            order: order,
+            page: page,
+          },
+        });
         dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (err) {
         dispatch({
           type: "FETCH_FAIL",
-          payload: getError(error),
+          payload: getError(err),
         });
       }
     };
@@ -110,10 +115,11 @@ export default function SearchScreen() {
   }, [category, error, order, page, price, query, rating]);
 
   const [categories, setCategories] = useState([]);
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get(`/api/products/categories`);
+        const { data } = await axios.get("api/products/categories");
         setCategories(data);
       } catch (err) {
         toast.error(getError(err));
@@ -122,17 +128,18 @@ export default function SearchScreen() {
     fetchCategories();
   }, [dispatch]);
 
-  const getFilterUrl = (filter, skipPathname) => {
+  const getFilterUrl = (filter) => {
     const filterPage = filter.page || page;
     const filterCategory = filter.category || category;
     const filterQuery = filter.query || query;
     const filterRating = filter.rating || rating;
     const filterPrice = filter.price || price;
     const sortOrder = filter.order || order;
-    return `/search?category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;
+    return `/search category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;
   };
+
   return (
-    <div className='m-4'>
+    <div>
       <Helmet>
         <title>Search Products</title>
       </Helmet>
@@ -239,7 +246,6 @@ export default function SearchScreen() {
                 <Col className='text-end'>
                   Sort by{" "}
                   <select
-                    className='my-2'
                     value={order}
                     onChange={(e) => {
                       navigate(getFilterUrl({ order: e.target.value }));
@@ -271,7 +277,7 @@ export default function SearchScreen() {
                     className='mx-1'
                     to={{
                       pathname: "/search",
-                      seacrh: getFilterUrl({ page: x + 1 }, true),
+                      search: getFilterUrl({ page: x + 1 }).substring(7),
                     }}
                   >
                     <Button

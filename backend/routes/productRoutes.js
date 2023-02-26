@@ -5,7 +5,7 @@ import { isAuth, isAdmin } from "../utils.js";
 
 const productRouter = express.Router();
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 3;
 
 productRouter.get(
   "/categories",

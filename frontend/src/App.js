@@ -26,10 +26,12 @@ import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 import { toast, ToastContainer } from "react-toastify";
 import Button from "react-bootstrap/Button";
-import { getError } from "./utils";
+import { getError } from "./util";
 import axios from "axios";
 import SearchBox from "./components/SearchBox";
 import SearchScreen from "./screens/SearchScreen";
+import UserListScreen from "./screens/UserListScreen";
+import UserEditScreen from "./screens/UserEditScreen";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -71,12 +73,12 @@ function App() {
         <header>
           <Navbar bg='dark' variant='dark' expand='lg'>
             <Container>
-              <Button
+              {/* <Button
                 variant='dark'
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
                 <i className='fas fa-bars'></i>
-              </Button>
+              </Button> */}
               <LinkContainer to='/'>
                 <Navbar.Brand>ProTech</Navbar.Brand>
               </LinkContainer>
@@ -149,7 +151,7 @@ function App() {
             {categories.map((category) => (
               <Nav.Item key={category}>
                 <LinkContainer
-                  to={`/search/category=${category}`}
+                  to={{ pathname: "/search", search: `category=${category}` }}
                   onClick={() => setSidebarIsOpen(false)}
                 >
                   <Nav.Link>{category}</Nav.Link>
@@ -193,6 +195,14 @@ function App() {
                 }
               ></Route>
               <Route
+                path='/admin/users'
+                element={
+                  <AdminRoute>
+                    <UserListScreen />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
                 path='/admin/products'
                 element={
                   <AdminRoute>
@@ -227,6 +237,14 @@ function App() {
                 element={
                   <AdminRoute>
                     <ProductEditScreen />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path='/admin/user/:id'
+                element={
+                  <AdminRoute>
+                    <UserEditScreen />
                   </AdminRoute>
                 }
               ></Route>

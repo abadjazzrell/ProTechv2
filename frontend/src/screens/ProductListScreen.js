@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { Store } from "../Store";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { getError } from "../utils";
+import { getError } from "../util";
 
 const reducer = (state, action) => {
   switch (action.type) {

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useReducer, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../Store";
-import { getError } from "../utils";
+import { getError } from "../util";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import { Helmet } from "react-helmet-async";
