@@ -59,6 +59,7 @@ export default function UserEditScreen() {
         );
         setName(data.name);
         setEmail(data.email);
+        setIsAdmin(data.isAdmin);
         dispatch({ type: "FETCH_SUCCESS" });
       } catch (err) {
         dispatch({
@@ -76,7 +77,7 @@ export default function UserEditScreen() {
       dispatch({ type: "UPDATE_REQUEST" });
       await axios.put(
         `https://capstone-3-backendv2.onrender.com/api/users/${userId}`,
-        { _id: userId, name, email },
+        { _id: userId, name, email, isAdmin },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         }
