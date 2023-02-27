@@ -83,7 +83,7 @@ export default function ProductListScreen() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `https://capstone-3-p5mm.onrender.com/api/products/admin?page=${page} `,
+          `https://capstone-3-backendv2.onrender.com/api/products/admin?page=${page} `,
           {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }
@@ -104,7 +104,7 @@ export default function ProductListScreen() {
       try {
         dispatch({ type: "CREATE_REQUEST" });
         const { data } = await axios.post(
-          "https://capstone-3-p5mm.onrender.com/api/products",
+          "/api/products",
           {},
           {
             headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -126,7 +126,7 @@ export default function ProductListScreen() {
     if (window.confirm("Are you sure to delete?")) {
       try {
         await axios.delete(
-          `https://capstone-3-p5mm.onrender.com/api/products/${product._id}`,
+          `https://capstone-3-backendv2.onrender.com/api/products/${product._id}`,
           {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }

@@ -52,7 +52,7 @@ export default function UserEditScreen() {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          `https://capstone-3-p5mm.onrender.com/api/users/${userId}`,
+          `https://capstone-3-backendv2.onrender.com/api/users/${userId}`,
           {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }
@@ -75,7 +75,7 @@ export default function UserEditScreen() {
     try {
       dispatch({ type: "UPDATE_REQUEST" });
       await axios.put(
-        `https://capstone-3-p5mm.onrender.com/api/users/${userId}`,
+        `https://capstone-3-backendv2.onrender.com/api/users/${userId}`,
         { _id: userId, name, email },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },

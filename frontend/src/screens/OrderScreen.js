@@ -96,7 +96,7 @@ export default function OrderScreen() {
       try {
         dispatch({ type: "PAY_REQUEST" });
         const { data } = await axios.put(
-          `https://capstone-3-p5mm.onrender.com/api/orders/${order._id}/pay`,
+          `https://capstone-3-backendv2.onrender.com/api/orders/${order._id}/pay`,
           details,
           {
             headers: { authorization: `Bearer ${userInfo.token}` },
@@ -119,7 +119,7 @@ export default function OrderScreen() {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          `https://capstone-3-p5mm.onrender.com/api/orders/${orderId}`,
+          `https://capstone-3-backendv2.onrender.com/api/orders/${orderId}`,
           {
             headers: { authorization: `Bearer ${userInfo.token}` },
           }
@@ -150,7 +150,7 @@ export default function OrderScreen() {
     } else {
       const loadPaypalScript = async () => {
         const { data: clientId } = await axios.get(
-          "https://capstone-3-p5mm.onrender.com/api/keys/paypal",
+          "https://capstone-3-backendv2.onrender.com/api/keys/paypal",
           {
             headers: { authorization: `Bearer ${userInfo.token}` },
           }
@@ -180,7 +180,7 @@ export default function OrderScreen() {
     try {
       dispatch({ type: "DELIVER_REQUEST" });
       const { data } = await axios.put(
-        `https://capstone-3-p5mm.onrender.com/api/orders/${order._id}/deliver`,
+        `https://capstone-3-backendv2.onrender.com/api/orders/${order._id}/deliver`,
         {},
         {
           headers: { authorization: `Bearer ${userInfo.token}` },

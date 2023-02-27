@@ -52,7 +52,7 @@ export default function OrderListScreen() {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          `https://capstone-3-p5mm.onrender.com/api/orders`,
+          `https://capstone-3-backendv2.onrender.com/api/orders`,
           {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }
@@ -77,7 +77,7 @@ export default function OrderListScreen() {
       try {
         dispatch({ type: "DELETE_REQUEST" });
         await axios.delete(
-          `https://capstone-3-p5mm.onrender.com/api/orders/${order._id}`,
+          `https://capstone-3-backendv2.onrender.com/api/orders/${order._id}`,
           {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }

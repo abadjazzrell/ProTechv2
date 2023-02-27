@@ -30,7 +30,7 @@ export default function SignupScreen() {
     }
     try {
       const { data } = await Axios.post(
-        "https://capstone-3-p5mm.onrender.com/api/users/signup",
+        "https://capstone-3-backendv2.onrender.com/api/users/signup",
         {
           name,
           email,

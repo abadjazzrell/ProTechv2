@@ -67,7 +67,7 @@ export default function ProductEditScreen() {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          `https://capstone-3-p5mm.onrender.com/api/products/${productId}`
+          `https://capstone-3-backendv2.onrender.com/api/products/${productId}`
         );
         setName(data.name);
         setSlug(data.slug);
@@ -94,7 +94,7 @@ export default function ProductEditScreen() {
     try {
       dispatch({ type: "UPDATE_REQUEST" });
       await axios.put(
-        `https://capstone-3-p5mm.onrender.com/api/products/${productId}`,
+        `https://capstone-3-backendv2.onrender.com/api/products/${productId}`,
         {
           _id: productId,
           name,
@@ -129,7 +129,7 @@ export default function ProductEditScreen() {
     try {
       dispatch({ type: "UPLOAD_REQUEST" });
       const { data } = await axios.post(
-        "https://capstone-3-p5mm.onrender.com/api/upload",
+        "https://capstone-3-backendv2.onrender.com/api/upload",
         bodyFormData,
         {
           headers: {

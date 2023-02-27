@@ -33,7 +33,7 @@ function HomeScreen() {
       dispatch({ type: "FETCH_REQUEST" });
       try {
         const result = await axios.get(
-          "https://capstone-3-p5mm.onrender.com/api/products"
+          "https://capstone-3-backendv2.onrender.com/api/products"
         );
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
@@ -58,11 +58,13 @@ function HomeScreen() {
           <MessageBox variant='danger'>{error}</MessageBox>
         ) : (
           <Row>
-            {products.map((product) => (
-              <Col key={product.slug} sm={6} md={4} lg={3} className='mb-3'>
-                <Product product={product}></Product>
-              </Col>
-            ))}
+            {products
+              .filter((product) => product.isActive) // Filter out inactive products
+              .map((product) => (
+                <Col key={product.slug} sm={6} md={4} lg={3} className='mb-3'>
+                  <Product product={product}></Product>
+                </Col>
+              ))}
           </Row>
         )}
       </div>

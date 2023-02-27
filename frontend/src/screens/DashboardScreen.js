@@ -37,7 +37,7 @@ export default function DashboardScreen() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          "https://capstone-3-p5mm.onrender.com/api/orders/summary",
+          "https://capstone-3-backendv2.onrender.com/api/orders/summary",
           {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }

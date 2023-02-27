@@ -35,7 +35,7 @@ export default function OrderHistoryScreen() {
       dispatch({ type: "FETCH_REQUEST" });
       try {
         const { data } = await axios.get(
-          `https://capstone-3-p5mm.onrender.com/api/orders/mine`,
+          `https://capstone-3-backendv2.onrender.com/api/orders/mine`,
 
           { headers: { Authorization: `Bearer ${userInfo.token}` } }
         );
