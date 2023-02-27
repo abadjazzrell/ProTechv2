@@ -43,9 +43,6 @@ function HomeScreen() {
     fetchData();
   }, []);
 
-  // filter products whose isActive value is false
-  const activeProducts = products.filter((product) => product.isActive);
-
   return (
     <div>
       <Helmet>
@@ -59,7 +56,7 @@ function HomeScreen() {
           <MessageBox variant='danger'>{error}</MessageBox>
         ) : (
           <Row>
-            {activeProducts.map((product) => (
+            {products.map((product) => (
               <Col key={product.slug} sm={6} md={4} lg={3} className='mb-3'>
                 <Product product={product}></Product>
               </Col>
