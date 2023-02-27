@@ -59,7 +59,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/'>
       <div
         className={
           sidebarIsOpen
