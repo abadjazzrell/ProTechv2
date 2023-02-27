@@ -52,39 +52,37 @@ function HomeScreen() {
         <Carousel>
           <Carousel.Item>
             <img
-              className='d-block w-100'
-              src='holder.js/800x400?text=First slide&bg=373940'
+              className='d-block w-100 carousel-image'
+              src='/images/carousel1.jpg'
               alt='First slide'
             />
             <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h3></h3>
+              <p></p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <img
-              className='d-block w-100'
-              src='holder.js/800x400?text=Second slide&bg=282c34'
+              className='d-block w-100 carousel-image'
+              src='/images/carousel2.jpg'
               alt='Second slide'
             />
 
             <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h3></h3>
+              <p></p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <img
-              className='d-block w-100'
-              src='holder.js/800x400?text=Third slide&bg=20232a'
+              className='d-block w-100 carousel-image'
+              src='/images/carousel3.jpg'
               alt='Third slide'
             />
 
             <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-              </p>
+              <h3></h3>
+              <p></p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
