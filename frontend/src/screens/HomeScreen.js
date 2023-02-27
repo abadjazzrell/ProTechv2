@@ -1,12 +1,12 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
-import logger from "use-reducer-logger";
-import { Row, Col } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Product from "../components/Product";
 import { Helmet } from "react-helmet-async";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import Carousel from "react-bootstrap/Carousel";
+// import data from '../data';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -14,7 +14,7 @@ const reducer = (state, action) => {
       return { ...state, loading: true };
     case "FETCH_SUCCESS":
       return { ...state, products: action.payload, loading: false };
-    case "FETCH_FAILED":
+    case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
     default:
       return state;
@@ -22,13 +22,12 @@ const reducer = (state, action) => {
 };
 
 function HomeScreen() {
-  const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
+  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
     products: [],
     loading: true,
     error: "",
   });
-  //const [products, setProducts] = useState([]);
-
+  // const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
@@ -36,80 +35,36 @@ function HomeScreen() {
         const result = await axios.get("/api/products");
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
-        dispatch({ type: "FETCH_FAILED", payload: err.message });
+        dispatch({ type: "FETCH_FAIL", payload: err.message });
       }
 
-      //setProducts(result.data);
+      // setProducts(result.data);
     };
-
     fetchData();
   }, []);
 
   return (
-    <>
-      <h1>Welcome to ProTech</h1>
-      <div>
-        <Carousel>
-          <Carousel.Item>
-            <img
-              className='d-block w-100 carousel-image'
-              src='/images/carousel1.jpg'
-              alt='First slide'
-            />
-            <Carousel.Caption>
-              <h3>Carousel-1</h3>
-              <p>carousel-1</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className='d-block w-100 carousel-image'
-              src='/images/carousel2.jpg'
-              alt='Second slide'
-            />
-
-            <Carousel.Caption>
-              <h3>Carousel-2</h3>
-              <p>carousel-2</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className='d-block w-100 carousel-image'
-              src='/images/carousel3.jpg'
-              alt='Third slide'
-            />
-
-            <Carousel.Caption>
-              <h3>Carousel-3</h3>
-              <p>carousel-3</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
+    <div>
+      <Helmet>
+        <title>ProTech</title>
+      </Helmet>
+      <h1>Featured Products</h1>
+      <div className='products'>
+        {loading ? (
+          <LoadingBox />
+        ) : error ? (
+          <MessageBox variant='danger'>{error}</MessageBox>
+        ) : (
+          <Row>
+            {products.map((product) => (
+              <Col key={product.slug} sm={6} md={4} lg={3} className='mb-3'>
+                <Product product={product}></Product>
+              </Col>
+            ))}
+          </Row>
+        )}
       </div>
-      <div>
-        <Helmet>
-          <title>ProTech</title>
-        </Helmet>
-        <h1>Featured Products</h1>
-        <div className='products'>
-          {loading ? (
-            <LoadingBox />
-          ) : error ? (
-            <MessageBox variant='danger'>{error}</MessageBox>
-          ) : (
-            <Row>
-              {products.map((product) => (
-                <Col key={product.slug} sm={6} md={4} lg={3} className='mb-3'>
-                  <Product product={product}></Product>
-                </Col>
-              ))}
-            </Row>
-          )}
-        </div>
-      </div>
-    </>
+    </div>
   );
 }
-
 export default HomeScreen;

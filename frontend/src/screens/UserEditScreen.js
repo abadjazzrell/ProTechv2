@@ -56,7 +56,6 @@ export default function UserEditScreen() {
         });
         setName(data.name);
         setEmail(data.email);
-        setIsAdmin(data.isAdmin);
         dispatch({ type: "FETCH_SUCCESS" });
       } catch (err) {
         dispatch({
@@ -74,7 +73,7 @@ export default function UserEditScreen() {
       dispatch({ type: "UPDATE_REQUEST" });
       await axios.put(
         `/api/users/${userId}`,
-        { _id: userId, name, email, isAdmin },
+        { _id: userId, name, email },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         }

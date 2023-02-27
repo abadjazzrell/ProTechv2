@@ -142,7 +142,7 @@ function App() {
               : "side-navbar d-flex justify-content-between flex-wrap flex-column"
           }
         >
-          {/* <Nav className='flex-column text-white w-100 p-2'>
+          <Nav className='flex-column text-white w-100 p-2'>
             <Nav.Item>
               <strong>Categories</strong>
             </Nav.Item>
@@ -156,7 +156,7 @@ function App() {
                 </LinkContainer>
               </Nav.Item>
             ))}
-          </Nav> */}
+          </Nav>
         </div>
         <main>
           <Container className='mt-3'>
