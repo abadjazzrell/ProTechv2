@@ -21,7 +21,9 @@ export default function CartScreen() {
   const isUserAdmin = userInfo && userInfo.isAdmin;
 
   const updateCartHandler = async (item, quantity) => {
-    const { data } = await axios.get(`/api/products/${item._id}`);
+    const { data } = await axios.get(
+      `https://capstone-3-p5mm.onrender.com/api/products/${item._id}`
+    );
     if (data.countInStock < quantity) {
       window.alert("Sorry. Product is out of stock");
       return;
