@@ -57,8 +57,8 @@ function HomeScreen() {
               alt='First slide'
             />
             <Carousel.Caption>
-              <h3></h3>
-              <p></p>
+              <h3>Carousel-1</h3>
+              <p>carousel-1</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -69,8 +69,8 @@ function HomeScreen() {
             />
 
             <Carousel.Caption>
-              <h3></h3>
-              <p></p>
+              <h3>Carousel-2</h3>
+              <p>carousel-2</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -81,8 +81,8 @@ function HomeScreen() {
             />
 
             <Carousel.Caption>
-              <h3></h3>
-              <p></p>
+              <h3>Carousel-3</h3>
+              <p>carousel-3</p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
