@@ -43,7 +43,7 @@ export default function ProfileScreen() {
 
     try {
       const { data } = await axios.put(
-        "/api/users/profile",
+        "https://capstone-3-backendv2.onrender.com/api/users/profile",
         {
           name,
           email,

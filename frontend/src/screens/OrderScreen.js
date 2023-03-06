@@ -50,6 +50,7 @@ function reducer(state, action) {
 }
 export default function OrderScreen() {
   const { state } = useContext(Store);
+
   const { userInfo } = state;
 
   const params = useParams();
@@ -91,17 +92,20 @@ export default function OrderScreen() {
       });
   }
 
-  function onApprove(data, actions) {
+  function onApprove(data, actions, props) {
+    const { product } = props;
+
     return actions.order.capture().then(async function (details) {
       try {
         dispatch({ type: "PAY_REQUEST" });
         const { data } = await axios.put(
-          `https://capstone-3-backendv2.onrender.com/api/orders/${order._id}/pay`,
+          `https://capstone-3-p5mm.onrender.com/api/orders/${order._id}/pay`,
           details,
           {
             headers: { authorization: `Bearer ${userInfo.token}` },
           }
         );
+
         dispatch({ type: "PAY_SUCCESS", payload: data });
         toast.success("Order is paid");
       } catch (err) {
@@ -110,6 +114,7 @@ export default function OrderScreen() {
       }
     });
   }
+
   function onError(err) {
     toast.error(getError(err));
   }
@@ -119,7 +124,7 @@ export default function OrderScreen() {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          `https://capstone-3-backendv2.onrender.com/api/orders/${orderId}`,
+          `https://capstone-3-p5mm.onrender.com/api/orders/${orderId}`,
           {
             headers: { authorization: `Bearer ${userInfo.token}` },
           }
@@ -150,7 +155,7 @@ export default function OrderScreen() {
     } else {
       const loadPaypalScript = async () => {
         const { data: clientId } = await axios.get(
-          "https://capstone-3-backendv2.onrender.com/api/keys/paypal",
+          "https://capstone-3-p5mm.onrender.com/api/keys/paypal",
           {
             headers: { authorization: `Bearer ${userInfo.token}` },
           }
@@ -180,7 +185,7 @@ export default function OrderScreen() {
     try {
       dispatch({ type: "DELIVER_REQUEST" });
       const { data } = await axios.put(
-        `https://capstone-3-backendv2.onrender.com/api/orders/${order._id}/deliver`,
+        `https://capstone-3-p5mm.onrender.com/api/orders/${order._id}/deliver`,
         {},
         {
           headers: { authorization: `Bearer ${userInfo.token}` },

@@ -48,7 +48,7 @@ export default function PlaceOrderScreen() {
       dispatch({ type: "CREATE_REQUEST" });
 
       const { data } = await Axios.post(
-        "https://capstone-3-backendv2.onrender.com/api/orders",
+        "https://capstone-3-p5mm.onrender.com/api/orders",
         {
           orderItems: cart.cartItems,
           shippingAddress: cart.shippingAddress,
